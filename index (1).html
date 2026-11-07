@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Hygge Thanksgiving</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,400&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F0E7; --linen:#EFE6D8; --oat:#E4D6C1; --sand:#CDB89C;
+    --taupe:#9C8670; --clay:#B0714F; --clay-deep:#8E5638; --cocoa:#3D3129;
+    --ink-soft:#6B5B4E; --card:#FBF8F3; --line:#E2D5C3;
+    --serif:'Fraunces', Georgia, serif; --sans:'Nunito Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans); color:var(--cocoa); line-height:1.55;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(214,160,110,.22), transparent 60%),
+      linear-gradient(var(--cream), var(--linen));
+    background-attachment:fixed; min-height:100vh;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 22px}
+  /* Hero */
+  header{padding:64px 0 36px;text-align:center}
+  .candle{width:44px;height:72px;margin:0 auto 18px;position:relative}
+  .flame{position:absolute;left:50%;top:2px;width:14px;height:24px;margin-left:-7px;
+    background:radial-gradient(ellipse at 50% 70%, #FFE6B0 0%, #F2B566 45%, rgba(224,140,70,.0) 75%);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation:flicker 2.8s ease-in-out infinite; filter:blur(.3px)}
+  .glow{position:absolute;left:50%;top:-14px;width:80px;height:80px;margin-left:-40px;border-radius:50%;
+    background:radial-gradient(circle, rgba(245,190,120,.35), transparent 65%);animation:glow 3.4s ease-in-out infinite}
+  .wax{position:absolute;bottom:0;left:50%;width:26px;height:42px;margin-left:-13px;border-radius:4px 4px 3px 3px;
+    background:linear-gradient(90deg,#EDE2D0,#F8F2E8 45%,#E3D4BE)}
+  .wick{position:absolute;left:50%;top:24px;width:2px;height:7px;margin-left:-1px;background:#4A3A2E;border-radius:1px}
+  @keyframes flicker{0%,100%{transform:scale(1) rotate(-1deg)}30%{transform:scale(1.05,.96) rotate(1.5deg)}60%{transform:scale(.96,1.04) rotate(-1.5deg)}}
+  @keyframes glow{0%,100%{opacity:.85}50%{opacity:1}}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);font-weight:700}
+  h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,11vw,62px);line-height:1.02;margin:12px 0 14px;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--clay)}
+  .sub{font-family:var(--serif);font-style:italic;font-weight:300;font-size:19px;color:var(--ink-soft)}
+  .hero-date{margin-top:22px;display:inline-block;padding:10px 18px;border:1px solid var(--sand);border-radius:999px;font-weight:600;font-size:15px;background:rgba(251,248,243,.6)}
+  .cta{display:inline-block;margin-top:22px;background:var(--clay);color:#FFF9F2;text-decoration:none;font-weight:700;
+    padding:14px 28px;border-radius:999px;box-shadow:0 6px 18px rgba(142,86,56,.25);transition:background .2s}
+  .cta:hover{background:var(--clay-deep)}
+  nav{position:sticky;top:0;z-index:5;background:rgba(246,240,231,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+  nav a{flex:none;font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;padding:7px 13px;border-radius:999px}
+  nav a:hover{background:var(--oat);color:var(--cocoa)}
+  section{padding:42px 0 6px}
+  h2{font-family:var(--serif);font-weight:400;font-size:30px;margin-bottom:6px}
+  .lede{color:var(--ink-soft);margin-bottom:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 8px 24px rgba(61,49,41,.05)}
+  .grid{display:grid;gap:12px}
+  .detail{display:flex;gap:14px;align-items:flex-start}
+  .icon{flex:none;width:40px;height:40px;border-radius:12px;background:var(--linen);display:grid;place-items:center;color:var(--clay)}
+  .icon svg{width:20px;height:20px}
+  .label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);font-weight:700}
+  .value{font-weight:600;font-size:17px}
+  .note{color:var(--ink-soft);font-size:15px}
+  .menu-group + .menu-group{margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
+  .menu-group h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:18px;color:var(--clay);margin-bottom:6px}
+  .menu-group ul{list-style:none}
+  .menu-group li{padding:3px 0}
+  .menu-group li span{color:var(--taupe);font-size:14px}
+  .bring{list-style:none}
+  .bring li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .bring li:last-child{border-bottom:0}
+  .pill{flex:none;font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px}
+  .pill.open{background:#F1E3D3;color:var(--clay-deep)}
+  .pill.taken{background:#E5E0D3;color:#6C6A55}
+  .guests{display:flex;flex-wrap:wrap;gap:8px}
+  .guest{background:var(--linen);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-weight:600;font-size:15px}
+  .guest small{color:var(--taupe);font-weight:600}
+  .count{font-family:var(--serif);font-size:15px;color:var(--ink-soft);margin-bottom:14px}
+  .empty{color:var(--taupe);font-style:italic}
+  form label{display:block;font-weight:700;font-size:14px;margin:16px 0 6px}
+  form label:first-child{margin-top:0}
+  input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--cocoa);background:#fff;border:1px solid var(--sand);border-radius:12px;padding:12px 14px;outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--clay);box-shadow:0 0 0 3px rgba(176,113,79,.15)}
+  textarea{min-height:80px;resize:vertical}
+  .choice{display:flex;gap:8px}
+  .choice button{flex:1;font:inherit;font-weight:700;font-size:15px;padding:12px 8px;border-radius:12px;border:1px solid var(--sand);background:#fff;color:var(--ink-soft);cursor:pointer}
+  .choice button.on{background:var(--clay);border-color:var(--clay);color:#FFF9F2}
+  .submit{margin-top:22px;width:100%;font:inherit;font-weight:700;font-size:16px;padding:15px;border:0;border-radius:999px;background:var(--cocoa);color:var(--cream);cursor:pointer}
+  .submit:hover{background:#2A211B}
+  .err{color:#A2442A;font-size:14px;margin-top:10px;min-height:1em}
+  .confirm{display:none}
+  .confirm.show{display:block}
+  .msg{background:var(--linen);border-radius:12px;padding:14px;font-size:15px;white-space:pre-wrap;margin:14px 0}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{font:inherit;font-weight:700;font-size:15px;padding:12px 18px;border-radius:999px;border:1px solid var(--sand);background:#fff;color:var(--cocoa);cursor:pointer;text-decoration:none;display:inline-block}
+  .btn.primary{background:var(--clay);border-color:var(--clay);color:#FFF9F2}
+  .tiny{font-size:13px;color:var(--taupe);margin-top:12px}
+  footer{text-align:center;padding:56px 0 64px;color:var(--taupe)}
+  footer p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--ink-soft)}
+  .hidden{display:none}
+  .evening .lights{display:block;width:100%;height:auto;margin:-4px 0 12px;border-radius:12px;background:linear-gradient(#3D3129,#5A463A)}
+  .tablescape{margin-top:34px;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 14px 34px rgba(61,49,41,.10)}
+  .tablescape svg{display:block;width:100%;height:auto}
+  .bring-group + .bring-group{margin-top:12px}
+  .bring-group h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:18px;color:var(--clay);margin-bottom:2px}
+  .checks{display:grid;gap:8px}
+  .checks label{display:flex;gap:10px;align-items:flex-start;margin:0;font-weight:600;font-size:15px;background:#fff;border:1px solid var(--sand);border-radius:12px;padding:11px 12px;cursor:pointer}
+  .checks label small{display:block;font-weight:400;color:var(--taupe);font-size:13px}
+  .checks input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--clay)}
+  .checks .grp{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);font-weight:700;margin-top:6px}
+  .choice.wrap3 button{font-size:14px}
+  .qbox{margin-top:18px;background:var(--linen);border-radius:14px;padding:14px}
+  .qbox p{font-size:14.5px;color:var(--ink-soft);margin-bottom:10px}
+  .expect{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .vig{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .vig svg{display:block;width:100%;height:auto;background:linear-gradient(#F3E7D6,#EADBC5)}
+  .vig div{padding:12px 14px 14px}
+  .vig b{font-family:var(--serif);font-weight:400;font-size:17px;display:block}
+  .vig span{font-size:13.5px;color:var(--ink-soft);line-height:1.4;display:block;margin-top:2px}
+  .menu-group li .by{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:var(--clay-deep);background:#F1E3D3;border-radius:999px;padding:1px 8px}
+  .menu-group li .desc{display:block;color:var(--ink-soft);font-size:14px;line-height:1.4}
+  .pill.multi{background:#EDE3D2;color:var(--ink-soft)}
+  .bring .sub-who{display:block;font-size:13px;color:var(--taupe)}
+  .bring .itm{display:block;font-weight:600}
+  .bring .hint{display:block;font-size:13.5px;color:var(--ink-soft)}
+  .optional{font-weight:400;color:var(--taupe)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="candle" aria-hidden="true"><div class="glow"></div><div class="flame"></div><div class="wick"></div><div class="wax"></div></div>
+    <div class="eyebrow">You're invited</div>
+    <h1>A <em>Hygge</em><br>Thanksgiving</h1>
+    <p class="sub" id="tagline"></p>
+    <div class="hero-date" id="heroDate"></div><br>
+    <a class="cta" href="#rsvp">RSVP &amp; claim a dish</a>
+    <div class="tablescape" aria-hidden="true"><svg viewBox="0 0 600 330">
+<defs>
+<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9D9C3"/><stop offset="1" stop-color="#D9C2A4"/></linearGradient>
+<linearGradient id="tbl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9744F"/><stop offset="1" stop-color="#7E5236"/></linearGradient>
+<radialGradient id="cg" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFD9A0" stop-opacity=".75"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/></radialGradient>
+<linearGradient id="wine" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A2E2A"/><stop offset="1" stop-color="#5C1C1C"/></linearGradient>
+</defs>
+<rect width="600" height="330" fill="url(#wall)"/>
+<rect x="408" y="22" width="150" height="120" rx="6" fill="#F4E8D6"/><path d="M483 22v120M408 82h150" stroke="#D9C2A4" stroke-width="5"/>
+<rect x="402" y="18" width="162" height="128" rx="8" fill="none" stroke="#CDB89C" stroke-width="5"/>
+<path d="M0 30 Q150 70 300 34 T600 40" stroke="#9C8670" stroke-width="1.5" fill="none"/>
+<g fill="#FFD48A"><circle cx="60" cy="46" r="4"/><circle cx="130" cy="56" r="4"/><circle cx="200" cy="55" r="4"/><circle cx="270" cy="42" r="4"/><circle cx="340" cy="34" r="4"/><circle cx="410" cy="44" r="4"/><circle cx="480" cy="50" r="4"/><circle cx="550" cy="42" r="4"/></g>
+<path d="M0 190 L600 190 L600 330 L0 330z" fill="url(#tbl)"/><path d="M0 190 L600 190" stroke="#C08A63" stroke-width="3"/>
+<path d="M0 214 L600 214 L600 262 L0 262z" fill="#EFE3D0"/><path d="M0 220 L600 220 M0 256 L600 256" stroke="#D8C6AB" stroke-width="1.5" stroke-dasharray="5 5"/>
+<circle cx="300" cy="150" r="95" fill="url(#cg)"/>
+<rect x="262" y="140" width="18" height="78" rx="3" fill="#FBF6EE"/><rect x="290" y="118" width="20" height="100" rx="3" fill="#FFFDF8"/><rect x="320" y="150" width="18" height="68" rx="3" fill="#F6EEDF"/>
+<path d="M271 122c6 7 6 13 0 17-6-4-6-10 0-17z" fill="#F2B566"/><path d="M300 99c6 7 6 13 0 17-6-4-6-10 0-17z" fill="#F2B566"/><path d="M329 132c6 7 6 13 0 17-6-4-6-10 0-17z" fill="#F2B566"/>
+<g stroke="#7D8A62" stroke-width="2.5" fill="none" stroke-linecap="round"><path d="M200 228 Q240 216 262 224"/><path d="M338 224 Q370 214 404 226"/></g>
+<g fill="#8E9A70"><ellipse cx="215" cy="222" rx="7" ry="3" transform="rotate(-20 215 222)"/><ellipse cx="235" cy="219" rx="7" ry="3" transform="rotate(15 235 219)"/><ellipse cx="365" cy="218" rx="7" ry="3" transform="rotate(-15 365 218)"/><ellipse cx="388" cy="221" rx="7" ry="3" transform="rotate(20 388 221)"/></g>
+<g><ellipse cx="180" cy="226" rx="24" ry="18" fill="#D98A4C"/><path d="M168 226a12 18 0 0 0 24 0" fill="none" stroke="#B9703A" stroke-width="2"/><path d="M180 208q2-8 7-10" stroke="#6B5B3E" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+<g><ellipse cx="420" cy="230" rx="18" ry="13" fill="#EFE3CF"/><path d="M412 230a8 13 0 0 0 16 0" fill="none" stroke="#D6C4A6" stroke-width="2"/><path d="M420 217q1-6 6-8" stroke="#6B5B3E" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+<g><ellipse cx="446" cy="234" rx="12" ry="9" fill="#C77A3E"/><path d="M446 225q1-5 4-6" stroke="#6B5B3E" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+<ellipse cx="95" cy="290" rx="78" ry="26" fill="#E9DCC7"/><ellipse cx="95" cy="286" rx="58" ry="18" fill="#FBF8F3"/><ellipse cx="95" cy="284" rx="40" ry="12" fill="#C99A62"/>
+<ellipse cx="83" cy="282" rx="10" ry="4" fill="#E2B04A"/><ellipse cx="104" cy="283" rx="9" ry="4" fill="#7D8A62"/><ellipse cx="96" cy="279" rx="7" ry="3" fill="#F1E6D2"/>
+<path d="M78 262c-6-8 6-12 0-22M96 258c-6-8 6-12 0-22M114 262c-6-8 6-12 0-22" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+<ellipse cx="505" cy="292" rx="78" ry="26" fill="#E9DCC7"/><ellipse cx="505" cy="288" rx="56" ry="17" fill="#FBF8F3"/>
+<path d="M470 280a35 22 0 0 0 70 0z" fill="#EADFCD"/><ellipse cx="505" cy="280" rx="35" ry="8" fill="#8E5638"/><circle cx="496" cy="279" r="3.5" fill="#D98A4C"/><circle cx="512" cy="280" r="3" fill="#D98A4C"/>
+<path d="M490 262c-6-8 6-12 0-22M508 258c-6-8 6-12 0-22M524 262c-6-8 6-12 0-22" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" opacity=".75"/>
+<g><path d="M548 196 q-2 32 16 36 q18-4 16-36z" fill="#F7F1E8" opacity=".55" stroke="#D9C9B2" stroke-width="1.5"/><path d="M550 214 q2 16 14 18 q12-2 14-18z" fill="url(#wine)"/><path d="M564 232v26" stroke="#D9C9B2" stroke-width="2.5"/><ellipse cx="564" cy="259" rx="12" ry="3" fill="#D9C9B2"/></g>
+<g><ellipse cx="190" cy="284" rx="30" ry="14" fill="#C08A55"/><ellipse cx="190" cy="280" rx="26" ry="10" fill="#D7A46A"/><path d="M174 278l8-5M188 277l8-5M202 278l8-5" stroke="#A8743F" stroke-width="2" stroke-linecap="round"/></g>
+</svg>
+</div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#expect">What to expect</a><a href="#details">Details</a><a href="#menu">Menu</a><a href="#bring">What to bring</a><a href="#coming">Who's coming</a><a href="#evening">Evening</a><a href="#rsvp">RSVP</a>
+</div></nav>
+
+<main class="wrap">
+  <section id="expect">
+    <h2>What to expect</h2>
+    <p class="lede">An unhurried afternoon of good food, soft light and the people we love.</p>
+    <div class="expect">
+      <div class="vig">
+        <svg viewBox="0 0 200 130" aria-hidden="true">
+          <circle cx="100" cy="60" r="60" fill="#F6D9AE" opacity=".45"/>
+          <rect x="20" y="104" width="160" height="26" fill="#C9AE8E"/>
+          <rect x="62" y="58" width="22" height="48" rx="3" fill="#F8F1E6"/><rect x="92" y="44" width="22" height="62" rx="3" fill="#FBF6EE"/><rect x="122" y="66" width="22" height="40" rx="3" fill="#F3EADC"/>
+          <path d="M73 40c5 6 5 12 0 16-5-4-5-10 0-16z" fill="#F2B566"/><path d="M103 26c5 6 5 12 0 16-5-4-5-10 0-16z" fill="#F2B566"/><path d="M133 48c5 6 5 12 0 16-5-4-5-10 0-16z" fill="#F2B566"/>
+          <ellipse cx="44" cy="106" rx="16" ry="5" fill="#8E5638" opacity=".5"/><path d="M36 104c0-12 16-12 16 0" fill="#B0714F"/>
+        </svg>
+        <div><b>Candlelight</b><span>Soft lights, warm corners and nowhere to rush off to.</span></div>
+      </div>
+      <div class="vig">
+        <svg viewBox="0 0 200 130" aria-hidden="true">
+          <rect x="0" y="96" width="200" height="34" fill="#C9AE8E"/>
+          <path d="M84 26c-6 8 6 12 0 22M100 20c-6 8 6 12 0 22M116 26c-6 8 6 12 0 22" stroke="#FBF6EE" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/>
+          <ellipse cx="100" cy="66" rx="52" ry="10" fill="#7A4A30"/>
+          <path d="M48 66a52 40 0 0 0 104 0z" fill="#E9DCC8"/><path d="M60 80a42 22 0 0 0 80 0" fill="none" stroke="#B0714F" stroke-width="3"/>
+          <circle cx="86" cy="64" r="5" fill="#D98A4C"/><circle cx="108" cy="62" r="4" fill="#9A6A3A"/><circle cx="120" cy="66" r="4" fill="#D98A4C"/>
+          <rect x="150" y="56" width="34" height="5" rx="2.5" fill="#9C8670" transform="rotate(-24 150 56)"/>
+        </svg>
+        <div><b>Warming food</b><span>Slow-simmered stew, curry and things made by hand.</span></div>
+      </div>
+      <div class="vig">
+        <svg viewBox="0 0 200 130" aria-hidden="true">
+          <rect x="0" y="100" width="200" height="30" fill="#C9AE8E"/>
+          <rect x="34" y="52" width="132" height="50" rx="6" fill="#8E5638"/><rect x="34" y="52" width="132" height="8" rx="4" fill="#A86A48"/>
+          <circle cx="92" cy="54" r="34" fill="#2E2520"/><circle cx="92" cy="54" r="26" fill="none" stroke="#4A3D35" stroke-width="1.5"/><circle cx="92" cy="54" r="18" fill="none" stroke="#4A3D35" stroke-width="1.5"/><circle cx="92" cy="54" r="9" fill="#D98A4C"/><circle cx="92" cy="54" r="1.8" fill="#F6F0E7"/>
+          <path d="M148 28 L144 60 L118 64" stroke="#CDB89C" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="148" cy="28" r="6" fill="#CDB89C"/>
+          <path d="M160 18l6-4v14M170 12l6-4v14" stroke="#9C8670" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div><b>Records spinning</b><span>Bring a favorite to play on the new turntable.</span></div>
+      </div>
+      <div class="vig">
+        <svg viewBox="0 0 200 130" aria-hidden="true">
+          <rect x="0" y="92" width="200" height="38" fill="#C9AE8E"/>
+          <path d="M0 92 Q50 80 100 92 T200 92 V130 H0z" fill="#E3D4BE"/>
+          <path d="M20 100h160" stroke="#CDB89C" stroke-width="2" stroke-dasharray="6 6"/>
+          <rect x="52" y="54" width="34" height="38" rx="7" fill="#B0714F"/><path d="M86 62h6a8 8 0 0 1 0 16h-6" stroke="#B0714F" stroke-width="5" fill="none"/>
+          <rect x="114" y="54" width="34" height="38" rx="7" fill="#F8F1E6"/><path d="M148 62h6a8 8 0 0 1 0 16h-6" stroke="#F8F1E6" stroke-width="5" fill="none"/>
+          <path d="M100 40c-8-8-20 2-10 11l10 9 10-9c10-9-2-19-10-11z" fill="#D98A4C"/>
+        </svg>
+        <div><b>Gratitude</b><span>A full table and a few minutes to share what we're thankful for.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="details">
+    <h2>The details</h2>
+    <p class="lede">Everything you need to find your way to the table.</p>
+    <div class="grid" id="detailsGrid"></div>
+  </section>
+
+  <section id="menu">
+    <h2>On the table</h2>
+    <p class="lede">Not your typical Thanksgiving spread. Think cozy, warming and made with love.</p>
+    <div class="card" id="menuCard"></div>
+  </section>
+
+  <section id="bring">
+    <h2>What to bring</h2>
+    <p class="lede">Check off what you’d like to bring when you RSVP. Anything marked “Room for more” can come from more than one person.</p>
+    <div id="bringWrap"></div>
+  </section>
+
+  <section id="coming">
+    <h2>Who's coming</h2>
+    <div class="card">
+      <div class="count" id="guestCount"></div>
+      <p class="tiny" id="syncNote" style="margin:-8px 0 12px"></p>
+      <div class="guests" id="guestList"></div>
+    </div>
+  </section>
+
+  <section id="evening">
+    <h2>Evening activities</h2>
+    <p class="lede">The cozy keeps going after dinner.</p>
+    <div class="card evening">
+      <svg viewBox="0 0 600 120" aria-hidden="true" class="lights">
+        <path d="M0 18 Q150 70 300 22 T600 26" stroke="#9C8670" stroke-width="1.5" fill="none"/>
+        <g><circle cx="40" cy="30" r="6" fill="#E9B44C"/><circle cx="100" cy="44" r="6" fill="#C9553B"/><circle cx="160" cy="50" r="6" fill="#4F8A6B"/><circle cx="220" cy="44" r="6" fill="#3E6FA6"/><circle cx="280" cy="28" r="6" fill="#E9B44C"/><circle cx="340" cy="22" r="6" fill="#C9553B"/><circle cx="400" cy="30" r="6" fill="#4F8A6B"/><circle cx="460" cy="36" r="6" fill="#3E6FA6"/><circle cx="520" cy="32" r="6" fill="#E9B44C"/><circle cx="580" cy="26" r="6" fill="#C9553B"/></g>
+        <path d="M250 120V84l50-26 50 26v36z" fill="#E4D6C1"/><path d="M285 120V96h30v24z" fill="#C9AE8E"/><path d="M300 58v-14" stroke="#9C8670" stroke-width="2"/>
+        <path d="M250 84l50-26 50 26" fill="none" stroke="#E9B44C" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+        <path d="M120 120V96h60v24zM420 120V92h60v28z" fill="#E4D6C1"/>
+        <path d="M120 96h60M420 92h60" stroke="#C9553B" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+      </svg>
+      <div class="label">Thanksgiving night</div>
+      <div class="value">The Plaza Lighting Ceremony</div>
+      <p class="note" style="margin-top:6px">After dinner, we're planning to head to the Country Club Plaza for Kansas City's Thanksgiving-night tradition, when the Plaza lights get switched on. It's free and open to everyone, so come along! This year's times haven't been announced yet. It usually starts in the early evening.</p>
+      <a class="btn primary" style="margin-top:14px" href="https://www.visitkc.com/articles/kansas-city-plaza-lights/" target="_blank" rel="noopener">Plaza Lighting website →</a>
+      <p class="note" style="margin-top:16px">Staying in? There will be records on the turntable, leftovers and plenty of blankets.</p>
+    </div>
+  </section>
+
+  <section id="rsvp">
+    <h2>RSVP</h2>
+    <p class="lede">Tell us you're coming and what you'd like to bring. Once the host confirms it, you'll show up on the list above.</p>
+    <div class="card">
+      <form id="rsvpForm" novalidate>
+        <label for="name">Your name</label>
+        <input id="name" autocomplete="name" placeholder="e.g. Aunt Jo">
+        <label>Will you be there?</label>
+        <div class="choice" id="attending">
+          <button type="button" data-v="Yes">Yes!</button>
+          <button type="button" data-v="Maybe">Maybe</button>
+          <button type="button" data-v="Can't make it">Can't make it</button>
+        </div>
+        <div id="comingFields">
+          <label for="party">How many in your group (including you)?</label>
+          <input id="party" type="number" inputmode="numeric" min="1" max="20" value="1">
+          <label>I'll bring… <span class="optional">(pick as many as you like)</span></label>
+          <div class="checks" id="dish"></div>
+          <div id="otherWrap" class="hidden">
+            <label for="otherText">What are you bringing?</label>
+            <input id="otherText" maxlength="80" placeholder="e.g. Spinach artichoke dip">
+            <label for="otherType">What kind of thing is it?</label>
+            <select id="otherType"></select>
+          </div>
+          <label for="record">A record to spin <span class="optional">(optional)</span></label>
+          <input id="record" placeholder="Artist, album">
+        </div>
+        <div class="qbox">
+          <p>Olivia is thinking about setting up a projector in the upstairs office for streaming, movies and football. Would that make your Thanksgiving feel complete?</p>
+          <div class="choice wrap3" id="projector">
+            <button type="button" data-v="Yes, please!">Yes, please!</button>
+            <button type="button" data-v="Nice to have">Nice to have</button>
+            <button type="button" data-v="Not needed">Not needed</button>
+          </div>
+        </div>
+        <label for="note">Comments</label>
+        <textarea id="note" placeholder="Allergies, arrival time, or just a hello."></textarea>
+        <button class="submit" type="submit">Send my RSVP</button>
+        <div class="err" id="err"></div>
+      </form>
+
+      <div class="confirm" id="confirm">
+        <h3 id="cHead" style="font-family:var(--serif);font-weight:400;font-size:24px">Almost done, <span id="cName"></span></h3>
+        <p class="note" id="cBody">Send this to <span id="hostName"></span> so it can go on the list:</p>
+        <div class="msg" id="msgText"></div>
+        <div class="row" id="textRow">
+          <button class="btn primary" id="copyBtn" type="button">Copy message</button>
+          <a class="btn" id="textBtn" href="#">Open in Messages</a>
+        </div>
+        <p class="tiny" id="hostContact"></p>
+        <p class="tiny"><a href="#rsvp" id="editBtn" style="color:var(--clay)">Change my answer</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <p id="closing"></p>
+  <div class="eyebrow" style="margin-top:14px" id="sig"></div>
+</div></footer>
+
+<script>
+/* ===== 1) PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ===== */
+const SHEET_URL = "";
+/* ============================================================ */
+
+/* ===== 2) EVERYTHING ELSE YOU MIGHT EDIT ===== */
+const EVENT = {
+  host: "Olivia",
+  hostPhone: "",
+  tagline: "Warmth, togetherness, gratitude and really good food.",
+  dateLong: "Thursday, November 26, 2026",
+  heroDate: "Thursday · November 26 · Noon",
+  arrive: "Arrive around noon",
+  dinner: "We'll eat around 1:30–2:00",
+  where: "Olivia and Max's house",
+  address: "Columbus Park, Kansas City · Text Olivia for the address",
+  parking: "Please park on the street",
+  dress: "Cozy. Sweaters, soft socks and stretchy pants encouraged.",
+  rsvpBy: "Please RSVP by Friday, November 20",
+  closing: "Come hungry, stay cozy, leave full of gratitude.",
+  menu: [
+    { course: "To start", items: [ { name: "Deviled eggs", by: "Grandma" } ] },
+    { course: "Salads", items: [
+      { name: "Dijon maple kale salad", desc: "Roasted sweet potatoes, pumpkin seeds, pecans, sliced apples, goat cheese" },
+      { name: "Broccoli salad", by: "Mom" },
+      { name: "Cranberry relish", by: "Grandma" } ] },
+    { course: "Soup", items: [
+      { name: "Warming beef stew", desc: "Local roast, homemade bone broth, carrots, celery, onion, garlic and ginger" } ] },
+    { course: "The main", items: [
+      { name: "Chicken curry with rice", desc: "Slow-smoked chicken thighs simmered in homemade bone broth, coconut milk and organic curry spices, finished with fresh herbs" } ] },
+    { course: "Sides", items: [ { name: "Potatoes" }, { name: "Fresh bread from Ibis Bakery" } ] },
+    { course: "Dessert", items: [ { name: "Homemade ice cream" } ] },
+    { course: "To sip", items: [ { name: "Open bar, stocked by all of us", desc: "Wine, vodka, tequila, or a cozy holiday cocktail or mocktail" } ] }
+  ],
+  // who: people already bringing it. multi: more than one person can bring it.
+  // course + menuLabel: when someone claims it, it also shows on the menu under that course.
+  bring: [
+    { group: "Food & drinks", items: [
+      { item: "Deviled eggs", who: ["Grandma"] },
+      { item: "Broccoli salad", who: ["Mom"] },
+      { item: "Cranberry relish", who: ["Grandma"] },
+      { item: "Sweets or a dessert", hint: "Anything to go with the homemade ice cream", who: [], multi: true, course: "Dessert", menuLabel: "Sweets to share" },
+      { item: "Drinks", hint: "Wine, vodka, tequila, or a holiday cocktail or mocktail", who: [], multi: true, course: "To sip", menuLabel: "Drinks" }
+    ]},
+    { group: "For the table & the vibe", items: [
+      { item: "Wine glasses", who: ["Grandma"] },
+      { item: "Extra soup bowls", hint: "We need at least 4 more", who: [], multi: true },
+      { item: "Placemats", who: [], multi: true },
+      { item: "A table runner", who: [] },
+      { item: "A record", hint: "The record collection is small. Add your favorite to the rotation!", who: [], multi: true }
+    ]}
+  ],
+  guests: [ { name: "Olivia", party: 1 } ]
+};
+// Where a "Something else" item lands, by the type the guest picks.
+const OTHER_TYPES = {
+  "Appetizer":                { group: "Food & drinks", course: "To start" },
+  "Salad or side":            { group: "Food & drinks", course: "Sides" },
+  "Dessert":                  { group: "Food & drinks", course: "Dessert" },
+  "Drink":                    { group: "Food & drinks", course: "To sip" },
+  "For the table & the vibe": { group: "For the table & the vibe" }
+};
+/* ============================================ */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ICONS = {
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  mug:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 9h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg>',
+  env:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>'
+};
+
+/* Combine the page's built-in plan with approved RSVPs from the sheet. */
+function merge(rows){
+  const E = JSON.parse(JSON.stringify(EVENT));
+  const items = E.bring.flatMap(g => g.items);
+  const add = (it, label) => { it.who = it.who || []; if (!it.who.includes(label)) it.who.push(label); };
+  (rows || []).forEach(r => {
+    const name = String(r.name || '').trim(); if (!name) return;
+    if (r.coming === "Can't make it") return;
+    E.guests = E.guests.filter(g => g.name.toLowerCase() !== name.toLowerCase());
+    E.guests.push({ name, party: +r.party || 1, maybe: r.coming === 'Maybe' });
+    (r.bringing || []).forEach(n => { const it = items.find(i => i.item === n); if (it && n !== 'A record') add(it, name); });
+    const rec = items.find(i => i.item === 'A record');
+    if (rec && (r.record || (r.bringing || []).includes('A record'))) add(rec, r.record ? `${name} (${r.record})` : name);
+    if (r.other) {
+      const t = OTHER_TYPES[r.otherType] || OTHER_TYPES["For the table & the vibe"];
+      const g = E.bring.find(x => x.group === t.group);
+      g.items.push({ item: r.other, who: [name] });
+      if (t.course) {
+        let c = E.menu.find(m => m.course === t.course);
+        if (!c) { c = { course: t.course, items: [] }; E.menu.push(c); }
+        c.items.push({ name: r.other, by: name });
+      }
+    }
+  });
+  items.forEach(it => {
+    if (it.course && (it.who || []).length) {
+      const c = E.menu.find(m => m.course === it.course);
+      if (c) c.items.push({ name: it.menuLabel, by: it.who.join(', ') });
+    }
+  });
+  return E;
+}
+
+function render(E){
+  $('tagline').textContent = E.tagline;
+  $('heroDate').textContent = E.heroDate;
+  $('closing').textContent = E.closing;
+  $('sig').textContent = "With love, " + E.host;
+  if ($('hostName')) $('hostName').textContent = E.host;
+
+  const details = [
+    { i:'cal', l:'When', v:E.dateLong, n:[E.arrive, E.dinner].filter(Boolean).join(' · ') },
+    { i:'pin', l:'Where', v:E.where, n:[E.address, E.parking].filter(Boolean).join(' · ') },
+    { i:'mug', l:'Dress code', v:'Hygge', n:E.dress },
+    { i:'env', l:'RSVP', v:E.rsvpBy, n:'Use the form at the bottom of this page.' }
+  ];
+  $('detailsGrid').innerHTML = details.map(d => `
+    <div class="card detail"><div class="icon">${ICONS[d.i]}</div>
+      <div><div class="label">${esc(d.l)}</div><div class="value">${esc(d.v)}</div>${d.n?`<div class="note">${esc(d.n)}</div>`:''}</div>
+    </div>`).join('');
+
+  $('menuCard').innerHTML = E.menu.filter(g => g.items.length).map(g => `
+    <div class="menu-group"><h3>${esc(g.course)}</h3><ul>${g.items.map(i=>`<li>${esc(i.name)}${i.by?`<span class="by">${esc(i.by)}</span>`:''}${i.desc?`<span class="desc">${esc(i.desc)}</span>`:''}</li>`).join('')}</ul></div>`).join('');
+
+  const row = b => {
+    const who = b.who || [];
+    let pill;
+    if (b.multi) pill = `<span class="pill open">${who.length ? 'Room for more' : 'Open'}</span>`;
+    else pill = who.length ? `<span class="pill taken">${esc(who.join(', '))}</span>` : `<span class="pill open">Open</span>`;
+    const sub = b.multi && who.length ? `<span class="sub-who">So far: ${esc(who.join(', '))}</span>` : '';
+    return `<li><span><span class="itm">${esc(b.item)}</span>${b.hint?`<span class="hint">${esc(b.hint)}</span>`:''}${sub}</span>${pill}</li>`;
+  };
+  $('bringWrap').innerHTML = E.bring.map(g => `<div class="card bring-group"><h3>${esc(g.group)}</h3><ul class="bring">${g.items.map(row).join('')}</ul></div>`).join('');
+
+  const total = E.guests.reduce((s,g)=>s+(+g.party||1),0);
+  $('guestCount').textContent = E.guests.length ? `${total} ${total===1?'person':'people'} so far` : '';
+  $('guestList').innerHTML = E.guests.length
+    ? E.guests.map(g => `<span class="guest">${esc(g.name)}${(+g.party>1)?` <small>+${(+g.party)-1}</small>`:''}${g.maybe?` <small>maybe</small>`:''}</span>`).join('')
+    : '<span class="empty">Be the first to RSVP.</span>';
+
+  // Checkbox list: keep anything the guest already ticked
+  const ticked = new Set([...document.querySelectorAll('#dish input:checked')].map(i => i.value));
+  $('dish').innerHTML = E.bring.map(g => {
+    const open = g.items.filter(b => b.multi || !(b.who||[]).length);
+    if (!open.length) return '';
+    return `<div class="grp">${esc(g.group)}</div>` + open.map(o => `<label><input type="checkbox" value="${esc(o.item)}"${ticked.has(o.item)?' checked':''}><span>${esc(o.item)}${o.hint?`<small>${esc(o.hint)}</small>`:''}</span></label>`).join('');
+  }).join('') + `<div class="grp">Other</div><label><input type="checkbox" value="__other" id="otherBox"${ticked.has('__other')?' checked':''}><span>Something else</span></label>`;
+  $('otherWrap').classList.toggle('hidden', !$('otherBox').checked);
+
+  $('hostContact').textContent = E.hostPhone ? `Or text it to ${E.host} at ${E.hostPhone}.` : '';
+}
+
+/* ---- Load approved RSVPs from the Google Sheet ---- */
+async function loadRows(){
+  if (!SHEET_URL) return;
+  $('syncNote').textContent = 'Checking for the latest RSVPs…';
+  try {
+    const res = await fetch(SHEET_URL + '?t=' + Date.now());
+    const data = await res.json();
+    render(merge(data.rows));
+    $('syncNote').textContent = '';
+  } catch (e) {
+    $('syncNote').textContent = "Couldn't load the latest RSVPs. Try refreshing in a minute.";
+  }
+}
+
+/* ---- Form ---- */
+let attending = '', projector = '';
+function wireChoice(id, set){
+  document.querySelectorAll(`#${id} button`).forEach(b => b.addEventListener('click', () => {
+    set(b.dataset.v);
+    document.querySelectorAll(`#${id} button`).forEach(x => x.classList.toggle('on', x===b));
+  }));
+}
+wireChoice('attending', v => { attending = v; $('comingFields').classList.toggle('hidden', v === "Can't make it"); });
+wireChoice('projector', v => { projector = v; });
+$('dish').addEventListener('change', () => { $('otherWrap').classList.toggle('hidden', !$('otherBox').checked); });
+$('otherType').innerHTML = '<option value="">Choose one…</option>' + Object.keys(OTHER_TYPES).map(k => `<option>${esc(k)}</option>`).join('');
+
+try { const saved = localStorage.getItem('hyggeName'); if (saved) $('name').value = saved; } catch(e){}
+
+$('rsvpForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const err = t => { $('err').textContent = t; };
+  const name = $('name').value.trim();
+  if (!name) return err('Add your name so we know who you are.');
+  if (!attending) return err('Let us know if you can make it.');
+  const coming = attending !== "Can't make it";
+  const picks = coming ? [...document.querySelectorAll('#dish input:checked')].map(i => i.value).filter(v => v !== '__other') : [];
+  const wantsOther = coming && $('otherBox') && $('otherBox').checked;
+  const other = wantsOther ? $('otherText').value.trim() : '';
+  const otherType = wantsOther ? $('otherType').value : '';
+  if (wantsOther && !other) return err("Tell us what else you're bringing.");
+  if (wantsOther && !otherType) return err('Pick what kind of thing it is, so it lands in the right spot.');
+  err('');
+  try { localStorage.setItem('hyggeName', name); } catch(e){}
+
+  const payload = {
+    name, coming: attending,
+    party: coming ? Math.max(1, parseInt($('party').value,10) || 1) : 0,
+    bringing: picks, other, otherType,
+    record: coming ? $('record').value.trim() : '',
+    projector, comments: $('note').value.trim()
+  };
+
+  const lines = [`Thanksgiving RSVP — ${name}`, `Coming: ${attending}`];
+  if (coming){
+    lines.push(`Group size: ${payload.party}`);
+    const all = picks.concat(other ? [`${other} (${otherType})`] : []);
+    lines.push(`Bringing: ${all.length ? all.join(', ') : 'Just myself'}`);
+    if (payload.record) lines.push(`Record: ${payload.record}`);
+  }
+  if (projector) lines.push(`Projector: ${projector}`);
+  if (payload.comments) lines.push(`Note: ${payload.comments}`);
+  $('msgText').textContent = lines.join('\n');
+  $('cName').textContent = name.split(' ')[0];
+
+  if (SHEET_URL) {
+    const btn = $('rsvpForm').querySelector('.submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch(SHEET_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || 'failed');
+      $('cHead').firstChild.textContent = 'Thank you, ';
+      $('cBody').textContent = out.needsApproval
+        ? `Your RSVP is in. You'll show up on the page once ${EVENT.host} confirms it.`
+        : "Your RSVP is in, and you're on the list.";
+      $('textRow').classList.add('hidden'); $('hostContact').classList.add('hidden');
+      loadRows();
+    } catch (ex) {
+      btn.disabled = false; btn.textContent = 'Send my RSVP';
+      return err("Hmm, that didn't send. Check your connection and try again.");
+    }
+    btn.disabled = false; btn.textContent = 'Send my RSVP';
+  } else {
+    const num = (EVENT.hostPhone||'').replace(/[^\d+]/g,'');
+    $('textBtn').href = `sms:${num}?&body=${encodeURIComponent(lines.join('\n'))}`;
+    $('copyBtn').textContent = 'Copy message';
+  }
+  $('rsvpForm').classList.add('hidden');
+  $('confirm').classList.add('show');
+  $('confirm').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+$('copyBtn').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('msgText').textContent); $('copyBtn').textContent = 'Copied ✓'; }
+  catch(e){
+    const r = document.createRange(); r.selectNodeContents($('msgText'));
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    $('copyBtn').textContent = 'Selected, tap Copy';
+  }
+});
+$('editBtn').addEventListener('click', () => {
+  $('confirm').classList.remove('show'); $('rsvpForm').classList.remove('hidden');
+});
+
+render(merge([]));
+loadRows();
+</script>
+</body>
+</html>
